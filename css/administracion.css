@@ -1,0 +1,103 @@
+/** contiene un input de tipo search */
+
+div.search-container {
+  display: inline-block;
+}
+
+
+/** si es PC hay que hacerlo flotar a la derecha */
+
+@media (min-width: 640px) {
+  div.search-container {
+    float: right;
+  }
+}
+
+
+/* boton desplegable "administracion", estilo comun a todas las resoluciones */
+
+.dropbtn {
+  background-color: transparent;
+  font-weight: bold;
+  padding: 5%;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+
+/* boton desplegable "administracion", estilo para PC */
+
+@media (min-width: 640px) {
+  .dropbtn {
+    margin-right: 20px;
+    margin-top: -5px;
+  }
+}
+
+
+/* boton desplegable "administracion", estilo para celulares */
+
+@media not all and (min-width: 640px) {
+  .dropbtn {
+    margin-left: -5px;
+    margin-right: 10px;
+  }
+}
+
+
+/* contenedor de boton desplegable "administracion", estilo para PC  */
+
+@media (min-width: 640px) {
+  .dropdown {
+    display: inline-block;
+  }
+}
+
+
+/* contenedor de boton desplegable "administracion", estilo para celulares  */
+
+@media not all and (min-width: 640px) {
+  .dropdown {
+    float: right;
+  }
+}
+
+
+/* contenido menu desplegable, por defecto lo tenemos que ocultar usando display none
+  el resto son ajustes esteticos como el efecto de sombreado */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+  color: black;
+  padding: 6% 8%;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

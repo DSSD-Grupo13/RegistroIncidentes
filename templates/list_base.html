@@ -1,0 +1,62 @@
+{% extends 'plantilla_base.html' %}
+
+{% block body %}
+
+<h1 align="center">{% block header %} {% endblock %}</h1>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+        <br>
+          &nbsp;
+          <form action="{% block search_action %} {% endblock %}" method="post" id="searchform">
+            <input type="text" placeholder="Buscar aqu&iacute;..." name="filter" id="filter" title="busqueda">
+          &nbsp;
+
+            <select id="users_state" name="users_state"> &nbsp;
+              <option> Activos </option>
+              <option> Bloqueados </option>
+            </select>
+
+            <button type= "submit" class="btn btn-info"> Buscar <span class="glyphicon glyphicon-search"></span> </button>
+          </form>
+          &nbsp;
+          <form action="{% block new_action %} {% endblock %}" method="post">
+            <button type= "submit" class="btn btn-success"> {% block new_action_label %} {% endblock %} <span class="glyphicon glyphicon-plus"></span></button>
+          </form>
+        </tr>
+
+{% block inner_body %}
+{% endblock %}
+
+<div class="container">
+  {% if pageCount > 1 %}
+  <form action="{% block pagination_action %} {% endblock %} "align="right" method="post">
+    <ul class="pagination">
+    {% for i in 1..pageCount %}
+      <li>
+        <input type="submit" class="btn .btn-link" id="page" name="page"  value={{ i }}> &nbsp;
+      </li>
+    {% endfor %}
+    </ul>
+  </form>
+  {% endif %}
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+  div.table-responsive {
+    background: white;
+  }
+  </style>
+
+{% endblock %}
+
+

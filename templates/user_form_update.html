@@ -1,0 +1,33 @@
+{% extends 'user_form_base.html' %}
+
+{% block header %}
+Actualizar Usuario
+{% endblock %}
+
+{% block action %}
+./?action=user_updated
+{% endblock %}
+
+{% block first_name_value %}
+{{ user.first_name }}
+{% endblock %}
+
+{% block last_name_value %}
+{{ user.last_name }}
+{% endblock %}
+
+{% block email_value %}
+{{ user.email }}
+{% endblock %}
+
+{% block username_value %}
+{{ user.username }}
+{% endblock %}
+
+{% block password_value %}
+{{ user.password }}
+{% endblock %}
+
+{% block form %}
+<input type="hidden" id='id' name='id' value={{ user.id }}>
+{% endblock %}

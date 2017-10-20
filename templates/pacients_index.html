@@ -1,0 +1,66 @@
+{% extends 'list_base.html' %}
+
+{% block header %} Listado de Pacientes {% endblock %}
+{% block search_action %} ./?action=pacients_index {% endblock %}
+{% block new_action %} ./?action=pacient_new {% endblock %}
+{% block new_action_label %} Agregar paciente {% endblock %}
+{% block pagination_action %} ./?action=pacients_index {% endblock %}
+
+{% block inner_body %}
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Genero</th>
+          <th>Tipo Doc. </th>
+          <th>DNI</th>
+          <th>Direcci&oacute;n</th>
+          <th>Tel&eacute;fono</th>
+          <th>Obra social</th>
+          <th> </th>
+          <th> </th>
+        </tr>
+      </thead>
+
+      {% for item in pacients %}
+        <tr>
+          <td>{{ item.first_name }}</td>
+          <td>{{ item.last_name }}</td>
+          <td>{{ item.birth_date }}</td>
+          <td>{{ item.gender }}</td>
+          <td>{{ referenceData.getDocumentTypeById(item.doc_type).description }}</td>
+          <td>{{ item.dni }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ referenceData.getSocialInsuranceById(item.id_medical_insurance).description }}</td>
+          <td>
+            <form action="./?action=pacient_form_update" method="post">
+              <input type="submit" class="btn btn-primary" name="id" value="Modificar">
+              <input type="hidden" name="id" id="id" value= "{{ item.id }}">
+            </form>
+          </td>
+          <td>
+            <form action="./?action=pacient_destroy" method="post">
+              <input type="submit" onclick='return confirm("¿Estás seguro?")' class="btn btn-primary" value="Eliminar" id="boton_borrar"/>
+              <input type="hidden" name="id" id="id" value= "{{ item.id }}">
+            </form>
+          </td>
+          <td>
+            <form action="./?action=pacient_demographic_data" method="post">
+              <input type="submit" class="btn btn-primary" value="Datos Demogr&aacute;ficos" id="boton_datos_demograficos"/>
+              <input type="hidden" name="id" id="id" value= "{{ item.id }}">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

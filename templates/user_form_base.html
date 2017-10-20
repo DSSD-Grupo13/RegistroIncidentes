@@ -1,0 +1,92 @@
+{% extends 'plantilla_base.html' %}
+
+{% block body %}
+
+<div id="div-top" align="center">
+  <h1>{% block header %} {% endblock %} </h1>
+  <form action="{% block action %} {% endblock %}" method='post'>
+    <div class="container">
+      <div class="row">
+        <div align="left">
+          <div class="well well-sm">
+            <div class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-user bigicon"></i></span>
+                  <div class="col-md-8">
+                    Nombre:
+                    <input id="first_name" name="first_name" type="text" placeholder="Nombre"
+                    value="{% block first_name_value %} {% endblock %}" class="form-control" required >
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-user bigicon"></i></span>
+                  <div class="col-md-8">
+                    Apellido:
+                    <input id="last_name" name="last_name" type="text" placeholder="Apellido"
+                    value="{% block last_name_value %} {% endblock %}" class="form-control" required>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-envelope-o bigicon"></i></span>
+                  <div class="col-md-8">
+                    E-mail:
+                    <input id="email" name="email" type="email" placeholder="Email"
+                    value="{% block email_value %} {% endblock %}" class="form-control" required>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-user bigicon"></i></span>
+                  <div class="col-md-8">
+                    Usuario:
+                    <input id="username" name="username" type="text" placeholder="Usuario"
+                    value="{% block username_value %} {% endblock %}" class="form-control" required
+                    {% if username_disabled %} disabled {% endif %} >
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-envelope-o bigicon"></i></span>
+                  <div class="col-md-8">
+                    Contrase&ntilde;a
+                    <input id="password" name="password" type="password" placeholder="Contrasena"
+                    value="{% block password_value %} {% endblock %}" class="form-control" required>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              {% block form %} {% endblock %}
+              <div class="form-group">
+                <div class="col-md-12 text-center">
+                <input type="submit" class="btn btn-primary" id= "confirm_button" name="confirm_button" value="Confirmar">
+
+                <input type="button" class="btn btn-danger" id= "cancel_button" name="cancel_button" onclick="return cancelar('users_index')"; value="Cancelar"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'plantilla_base.html' %}
+
+{% block head%} <link rel="stylesheet" type="text/css" href="../css/login.css"> {% endblock %}
+
+{% block body%}
+
+  <div class="login-menu">
+    {% if showLoginError %}
+      <div class="alert alert-danger"> Usuario y/o Contraseña ingresados incorrectos </div>
+    {% endif %}
+      <div class="login-menu-title">
+        <span class="text1"> Iniciar sesión </span>
+     </div>
+      <form action="./?action=do-login" method="post">
+        <br>
+          <div>Usuario </div>
+          <input type="text" required name="username" id="username" title="usuario" placeholder="Usuario">
+          <div>Contraseña </div>
+          <input type="password" required name="password" id="password" title="password" placeholder="Contraseña">
+          <br> <br>
+          <div class="login-accept-button">
+            <button type= "submit" id='btnSubmit'> Aceptar </button>
+          </div>
+      </form>
+  </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

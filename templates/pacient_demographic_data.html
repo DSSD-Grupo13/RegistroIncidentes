@@ -1,0 +1,59 @@
+{% extends 'plantilla_base.html' %}
+{% block body%}
+
+<h1 align="center"> Datos Demogr&aacute;ficos de {{ pacient.getFull_Name() }} </h1>
+
+<table align="center">
+</table>
+<br>
+
+<div class="container">
+ <div class="table-responsive">
+  <table class="table table-condensed">
+ <thead>
+      <tr>
+  <th>Tiene Heladera?</th>
+  <th>Tiene Mascota(s)?</th>
+  <th>Tiene Electricidad?</th>
+  <th>Tipo de Calefaccion</th>
+  <th>Tipo de Casa </th>
+  <th>Tipo de Agua<th>
+</thead>
+
+  </tfoot>
+    <tr>
+    {% if pacient.has_refrigerator == 1 %}
+          <td> SI </td>
+        {% elseif pacient.refrigerator == 0%}
+          <td> NO </td>
+        {% endif %}
+    {% if pacient.has_pet == 1 %}
+          <td> SI </td>
+        {% elseif pacient.pet == 0%}
+          <td> NO </td>
+        {% endif %}
+    {% if pacient.has_electricity == 1 %}
+          <td> SI </td>
+        {% elseif pacient.electricity == 0%}
+          <td> NO </td>
+        {% endif %}
+    <td>{{ referenceData.getHeatingTypeById(pacient.heating_type).description }}</td>
+    <td>{{ referenceData.getHomeTypeById(pacient.home_type).description }}</td>
+    <td>{{ referenceData.getWaterTypeById(pacient.water_type).description }}</td>
+    <td>
+      <form action="./?action=pacient_form_update" method="post">
+        <input type="submit" class="btn btn-primary" name="id" value="Modificar">
+        <input type="hidden" name="id" id="id" value= "{{ pacient.id }}">
+      </form>
+    </td>
+    </tr>
+
+</table>
+
+
+<style>
+div.table-responsive {
+  background: white;
+}
+</style>
+{% endblock %}
