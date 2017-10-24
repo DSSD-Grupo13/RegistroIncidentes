@@ -156,72 +156,9 @@ class UserFormController extends UsersCRUDController
 
 class UserListController extends UsersCRUDController
 {
-  private $appConfig;
-
-  public function __construct($view, $repository, $appConfig)
-  {
-    parent::__construct($view, $repository);
-    $this->appConfig = $appConfig;
-  }
-
-  protected function checkArgs($args)
-  {
-    return true;
-  }
-
   protected function doShowView($args)
   {
-    if (!isset($args['page']))
-      $page = 1;
-    else
-      $page = $args['page'];
-
-    if (!isset($args['users_state']))
-      $users_state = true;
-    else
-      $users_state =  $args['users_state'] == "Activos";
-
-    if (!isset($args['filter']) || empty($args['filter']))
-      {
-      $data = $this->getRepository()->getAll($page, $users_state);
-      $data_count = $this->getRepository()->getUserCount();
-    }
-    else
-      {
-      $data = $this->getRepository()->getAllByFilter($args['filter'], $page, $users_state);
-      $data_count = count($data);
-    }
-
-    $this->getView()->show($data, round($data_count / $this->appConfig->getPage_row_size()));
-  }
-}
-
-class UserToggleStatusController extends Controller
-{
-  private $userListController;
-  private $repository;
-
-  public function __construct($userListController, $repository)
-  {
-    $this->repository = $repository;
-    $this->userListController = $userListController;
-  }
-
-  protected function checkArgs($args)
-  {
-    if (!isset($args['id']))
-      return false;
-
-    if (!is_numeric($args['id']))
-      return false;
-
-    return true;
-  }
-
-  protected function doShowView($args)
-  {
-    $this->repository->toggleActive($args['id']);
-    $this->userListController->showView([]);
+    $this->getView()->show($this->getRepository()->getAll());
   }
 }
 

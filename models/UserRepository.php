@@ -1,11 +1,9 @@
 <?php
 class UserRepository extends PDORepository
 {
-  private $stmtToggleActive;
   private $stmtDelete;
   private $stmtCreate;
   private $stmtUpdate;
-  private $appConfig;
 
   private function queryToUserArray($query)
   {
@@ -26,7 +24,7 @@ class UserRepository extends PDORepository
     return $answer;
   }
 
-  public function __construct($appConfig)
+  public function __construct()
   {
     $this->stmtToggleActive = $this->newPreparedStmt("UPDATE users SET active = not active WHERE id = ?");
     $this->stmtDelete = $this->newPreparedStmt("DELETE FROM users WHERE id = ?");
@@ -36,29 +34,11 @@ class UserRepository extends PDORepository
     $this->stmtUpdate = $this->newPreparedStmt("UPDATE users SET email = ?, password = ?, first_name = ?, last_name = ?,
                                                 updated_at = NOW()
                                                 WHERE Id = ?");
-    $this->appConfig = $appConfig;
   }
 
-  public function getAll($page, $users_state)
+  public function getAll()
   {
-    $count = $this->appConfig->getPage_row_size();
-    $offset = ($page - 1) * $count;
-    return $this->queryToUserArray($this->queryList("SELECT * FROM users WHERE active = ? LIMIT $count OFFSET $offset", [$users_state]));
-  }
-
-  public function getAllByFilter($filter, $page, $users_state)
-  {
-    $count = $this->appConfig->getPage_row_size();
-    $offset = ($page - 1) * $count;
-    return $this->queryToUserArray($this->queryList(
-        "SELECT * FROM users WHERE (first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR username LIKE ?) AND active = ?
-        ORDER BY last_name, first_name ASC
-        LIMIT $count OFFSET $offset", ['%'.$filter.'%','%'.$filter.'%','%'.$filter.'%','%'.$filter.'%', $users_state]));
-  }
-
-  public function toggleActive($userId)
-  {
-    return $this->stmtToggleActive->execute([$userId]);
+    return $this->queryToUserArray($this->queryList("SELECT * FROM users"));
   }
 
   public function delete($userId)
@@ -83,7 +63,7 @@ class UserRepository extends PDORepository
 
   private function queryUser($username, $password)
   {
-    return $this->queryToUserArray($this->queryList("SELECT * FROM users where username = ? AND password = ? and active = 1", [$username, $password]));
+    return $this->queryToUserArray($this->queryList("SELECT * FROM users where username = ? AND password = ?", [$username, $password]));
   }
 
   public function containsUser($username, $password)
@@ -99,44 +79,6 @@ class UserRepository extends PDORepository
   public function userNameExists($username)
   {
     return count($this->queryList("SELECT * FROM users where username = ?", [$username]));
-  }
-
-  private function queryUserPermission($userId, $permissionName)
-  {
-    return $this->queryList("SELECT * FROM users_has_role UR
-                            INNER JOIN role_has_permission RP ON (UR.role_id = RP.role_id)
-                            INNER JOIN user_permission P ON (P.id = RP.permission_id)
-                            WHERE (UR.user_id = ?) AND P.name = ?", [$userId, $permissionName]);
-  }
-
-  private function queryUserRole($userId, $roleName)
-  {
-    return $this->queryList("SELECT * FROM users_has_role UR
-                            INNER JOIN user_role R ON (R.id = UR.role_id)
-                            WHERE (UR.user_id = ?) AND R.name = ?", [$userId, $roleName]);
-  }
-
-
-  public function hasPermission($userId, $action)
-  {
-    return count($this->queryUserPermission($userId, $action)) > 0;
-  }
-
-  public function hasRole($userId, $roleName)
-  {
-    return count($this->queryUserRole($userId, $roleName)) > 0;
-  }
-
-  public function getUserCount()
-  {
-    $stmt = $this->newPreparedStmt("SELECT COUNT(*) FROM users");
-    $stmt->execute();
-    return $stmt->fetchColumn();
-  }
-
-  public function getPageCount()
-  {
-    return round($this->getPacientCount() / $this->appConfig->getPage_row_size());
   }
 }
 
