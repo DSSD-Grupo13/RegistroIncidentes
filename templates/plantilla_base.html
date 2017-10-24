@@ -1,94 +1,77 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    
-
-    <!--BOOTSTRAP -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/scripts.js"></script>
-    <!-- -->
-
-
-    
-
-    
-    {% block head%}
-    {% endblock %}
-    <meta charset="UTF-8">
-    <title>{{ config.title }}</title>
-  </head>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/js/scripts.js"></script> {% block head%} {% endblock %}
+  <meta charset="UTF-8">
+  <title> Web-App-RegistroIncidentes </title>
+</head>
 
 <body>
-
-<!-- <div>
-  <img src='/img/hospital2.jpg' id="header" height="400" width="1550">
-</div>
--->
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <a class="navbar-brand"> <img src= "/img/logo.gif" id="logo" width="30" height="30">
-      <a class="navbar-brand" a href="./?action=index">Hospital Dr. Ricardo Gutiérrez</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="./?action=index"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-        <li class="dropdown">
-
-     {% block dropdown %}
-     {% endblock %}
-
-      {% if session.IsLoggedIn %}
-        <li><a href="./?action=pacients_index">Pacientes</a></li>
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administraci&oacute;n <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="./?action=users_index">Usuarios</a> </li>
-            <li><a href="#Roles">Roles</a> </li>
-            <li><a href="#Permisos">Permisos</a> </li>
-            <li><a href="./?action=admin">Configuraci&oacute;n</a> </li>
-          </ul>
-        </li>
-      {% endif %}
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      {% if session.IsLoggedIn %}
-        <p class="navbar-text"> <span class="glyphicon glyphicon-user"></span> Bienvenido, {{ session.UserName }} !</p>
-        <li><a href=./?action=do-logout><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
-      {% else %}
-        <li><a href=./?action=login><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
-      {% endif %}
-    </ul>
-  </div>
-</nav>
-
-  {% block body %}
-  {% endblock %}
-
-  <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <p class="footer" align="center"> Proyecto de Software 2017 - Hospital Dr. Ricardo Gutiérrez - v 0.1.0</p>
-    <p align="center"> <a class="contact-mail"  href="mailto:{{ config.contact_mail }}"> Mail de contacto </a> </p>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" a href="./?action=index">Registro de incidentes</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="./?action=index">
+              <span class="glyphicon glyphicon-home"></span> Inicio</a>
+          </li>
+          <li class="dropdown"> {% block dropdown %} {% endblock %} {% if session.IsLoggedIn %}
+            <li>
+              <a href="./?action=pacients_index">Pacientes</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administraci&oacute;n
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="./?action=users_index">Usuarios</a>
+                </li>
+                <li>
+                  <a href="#Roles">Roles</a>
+                </li>
+                <li>
+                  <a href="#Permisos">Permisos</a>
+                </li>
+                <li>
+                  <a href="./?action=admin">Configuraci&oacute;n</a>
+                </li>
+              </ul>
+            </li> {% endif %} </ul>
+        <ul class="nav navbar-nav navbar-right"> {% if session.IsLoggedIn %}
+          <p class="navbar-text">
+            <span class="glyphicon glyphicon-user"></span> Bienvenido, {{ session.UserName }} !</p>
+          <li>
+            <a href=./?action=do-logout>
+              <span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
+          </li> {% else %}
+          <li>
+            <a href=./?action=login>
+              <span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
+          </li> {% endif %} </ul>
+      </div>
   </nav>
+
+{% block body %}
+{% endblock %}
 </body>
 </html>
 
-
-
-
 <style>
-  /* Lo pongo aca porque en style.css no me lo toma */
   body {
     color: black;
     background-color: #2C8D89;
