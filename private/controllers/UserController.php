@@ -154,14 +154,6 @@ class UserFormController extends UsersCRUDController
   }
 }
 
-class UserListController extends UsersCRUDController
-{
-  protected function doShowView($args)
-  {
-    $this->getView()->show($this->getRepository()->getAll());
-  }
-}
-
 class UserDestroyedController extends UsersCRUDController
 {
   protected function checkArgs($args)

@@ -13,7 +13,7 @@ abstract class TwigView
     return self::$twig;
   }
 
-  private function getSession()
+  protected function getSession()
   {
     return new Session();
   }

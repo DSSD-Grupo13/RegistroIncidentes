@@ -18,7 +18,6 @@ require_once "./private/views/LoginView.php";
 require_once "./private/views/InvalidArgsView.php";
 require_once "./private/views/ErrorMessageView.php";
 
-require_once "./private/views/UserListView.php";
 require_once "./private/views/UserAddedView.php";
 require_once "./private/views/UserFormView.php";
 require_once "./private/views/UserUpdatedView.php";

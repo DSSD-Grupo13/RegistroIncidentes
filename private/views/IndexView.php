@@ -3,11 +3,14 @@ class IndexView extends TwigView
 {
   protected function getTemplateFile()
   {
-    return "index.html";
+    if ($this->getSession()->getIsLoggedIn())
+      return "index.html";
+    else
+      return "empty_index.html";
   }
 
-  public function show()
+  public function show($incidents = [])
   {
-    $this->render();
+    $this->render($incidents);
   }
 }

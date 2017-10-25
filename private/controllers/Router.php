@@ -25,9 +25,10 @@ class Router
   {
     if (!isset(self::$router)) {
       $userRepository = new UserRepository;
+      $incidentsRepository = null;
       $indexView = new IndexView;
       $loginView = new LoginView;
-      $indexController = new IndexController($indexView);
+      $indexController = new IndexController($indexView, $incidentsRepository);
       self::$router = new router($userRepository);
 
       self::$router->addController('index', $indexController);
@@ -35,13 +36,11 @@ class Router
       self::$router->addController('do-login', new DoLoginController(new $indexView, $loginView, $userRepository));
       self::$router->addController('do-logout', new DoLogoutController($indexController));
 
-      $userListController = new UserListController(new UserListView, $userRepository);
-      self::$router->addController('users_index', $userListController);
-      self::$router->addController('user_new', new UserNewController(new NewUserView, $userRepository));
-      self::$router->addController('user_added', new UserAddedController(new UserAddedView, $userRepository));
-      self::$router->addController('user_form_update', new UserFormController(new EditUserView, $userRepository));
-      self::$router->addController('user_updated', new UserUpdatedController(new UserUpdatedView, $userRepository));
-      self::$router->addController('user_destroy', new UserDestroyedController(new UserDestroyedView, $userRepository));
+      self::$router->addController('incidente_new', new UserNewController(new NewUserView, $userRepository));
+      self::$router->addController('incidente_added', new UserAddedController(new UserAddedView, $userRepository));
+      self::$router->addController('incidente_form_update', new UserFormController(new EditUserView, $userRepository));
+      self::$router->addController('incidente_updated', new UserUpdatedController(new UserUpdatedView, $userRepository));
+      self::$router->addController('incidente_destroy', new UserDestroyedController(new UserDestroyedView, $userRepository));
     }
 
     return self::$router;

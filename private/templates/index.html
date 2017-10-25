@@ -1,5 +1,50 @@
-{% extends 'plantilla_base.html' %}
+{% extends 'list_base.html' %}
 
-{% block body%}
+{% block header %} Listado de Incidentes {% endblock %}
+{% block new_action %} ./?action=incidente_new {% endblock %}
+{% block new_action_label %} Nuevo incidente {% endblock %}
 
- {% endblock %}
+{% block inner_body %}
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in incidents %}
+        <tr>
+          <td>{{ item.first_name }}</td>
+          <td>{{ item.last_name }}</td>
+          <td>{{ item.username }}</td>
+          <td>{{ item.email }}</td>
+          {% if item.active == 1 %}
+            <td> Activo </td>
+          {% elseif item.active == 0%}
+            <td> Bloqueado </td>
+          {% endif %}
+          <td>
+            <form action="./?action=incidente_form_update" method="post">
+              <input type="submit" class="btn btn-primary" name="id" value="Modificar">
+              <input type="hidden" name="id" id="id" value= "{{ item.id }}">
+            </form>
+          </td>
+        <td>
+          <form action="./?action=incidente_destroy" method="post">
+            <input type="submit" class="btn btn-primary"  onclick='return confirm("¿Estás seguro?")' value="Eliminar" id="boton_borrar"/>
+            <input type="hidden" name="id" id="id" value= "{{ item.id }}">
+          </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
