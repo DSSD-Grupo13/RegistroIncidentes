@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="./private/js/scripts.js"></script> {% block head%} {% endblock %}
   <meta charset="UTF-8">
-  <title> Web-App-RegistroIncidentes </title>
+  <title> Aseguradora SSA </title>
 </head>
 
 <body>
@@ -21,52 +21,29 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" a href="./?action=index">Registro de incidentes</a>
+        <a class="navbar-brand" a href="./?action=index">Aseguradora SSA - Gestio&nacute;n de Incidentes </a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="./?action=index">
-              <span class="glyphicon glyphicon-home"></span> Inicio</a>
-          </li>
-          <li class="dropdown"> {% block dropdown %} {% endblock %} {% if session.IsLoggedIn %}
-            <li>
-              <a href="./?action=pacients_index">Pacientes</a>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administraci&oacute;n
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="./?action=users_index">Usuarios</a>
-                </li>
-                <li>
-                  <a href="#Roles">Roles</a>
-                </li>
-                <li>
-                  <a href="#Permisos">Permisos</a>
-                </li>
-                <li>
-                  <a href="./?action=admin">Configuraci&oacute;n</a>
-                </li>
-              </ul>
-            </li> {% endif %} </ul>
-        <ul class="nav navbar-nav navbar-right"> {% if session.IsLoggedIn %}
-          <p class="navbar-text">
-            <span class="glyphicon glyphicon-user"></span> Bienvenido, {{ session.UserName }} !</p>
-          <li>
-            <a href=./?action=do-logout>
-              <span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
-          </li> {% else %}
-          <li>
-            <a href=./?action=login>
-              <span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
-          </li> {% endif %} </ul>
-      </div>
+          <li class="active"><a href="./?action=index"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
+        {% if session.IsLoggedIn %}
+          <li><a href="./?action=incidentes_index">Incidentes </a></li>
+        {% endif %}
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        {% if session.IsLoggedIn %}
+          <p class="navbar-text"> <span class="glyphicon glyphicon-user"></span> Bienvenido, {{ session.UserName }} !</p>
+          <li><a href=./?action=do-logout><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+        {% else %}
+          <li><a href=./?action=login><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+        {% endif %}
+      </ul>
+    </div>
   </nav>
 
-{% block body %}
-{% endblock %}
-</body>
-</html>
+    {% block body %}
+    {% endblock %}
+
+  </body>
+  </html>
