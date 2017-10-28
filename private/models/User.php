@@ -2,26 +2,22 @@
 class User
 {
   private $id;
-  private $username;
-  private $password;
+  private $nombreUsuario;
+  private $contrasena;
   private $email;
-  private $active;
-  private $updated_at;
-  private $created_at;
-  private $first_name;
-  private $last_name;
+  private $dni;
+  private $nombre;
+  private $apellido;
 
-  public function __construct($id, $username, $password, $email, $active, $updated_at, $created_at, $first_name, $last_name)
+  public function __construct($id, $nombreUsuario, $contrasena, $email, $dni, $nombre, $apellido)
   {
     $this->id = $id;
-    $this->username = $username;
-    $this->password = $password;
+    $this->nombreUsuario = $nombreUsuario;
+    $this->contrasena = $contrasena;
     $this->email = $email;
-    $this->active = $active;
-    $this->updated_at = $updated_at;
-    $this->created_at = $created_at;
-    $this->first_name = $first_name;
-    $this->last_name = $last_name;
+    $this->dni = $dni;
+    $this->nombre = $nombre;
+    $this->apellido = $apellido;
   }
 
   public function getId()
@@ -29,39 +25,29 @@ class User
     return $this->id;
   }
 
-  public function getUsername()
+  public function getNombreUsuario()
   {
-    return $this->username;
+    return $this->nombreUsuario;
   }
 
-  public function getPassword()
+  public function getContrasena()
   {
-    return $this->password;
+    return $this->contrasena;
   }
 
-  public function getActive()
+  public function getDni()
   {
-    return $this->active;
+    return $this->dni;
   }
 
-  public function getUpdated_at()
+  public function getNombre()
   {
-    return $this->updated_at;
+    return $this->nombre;
   }
 
-  public function getCreated_at()
+  public function getApellido()
   {
-    return $this->created_at;
-  }
-
-  public function getFirst_name()
-  {
-    return $this->first_name;
-  }
-
-  public function getLast_name()
-  {
-    return $this->last_name;
+    return $this->apellido;
   }
 
   public function getEmail()
@@ -71,6 +57,6 @@ class User
 
   public function getFull_Name()
   {
-    return $this->getFirst_Name() . ',' . $this->getLast_Name();
+    return $this->getNombre() . ',' . $this->getApellido();
   }
 }
