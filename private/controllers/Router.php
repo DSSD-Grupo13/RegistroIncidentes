@@ -25,7 +25,7 @@ class Router
   {
     if (!isset(self::$router)) {
       $userRepository = new UserRepository;
-      $incidentsRepository = null;
+      $incidentsRepository = new IncidentsRepository;
       $indexView = new IndexView;
       $loginView = new LoginView;
       $indexController = new IndexController($indexView, $incidentsRepository);
@@ -38,8 +38,8 @@ class Router
       self::$router->addController('sign-up', new SignUpController(new SignUpView));
       self::$router->addController('user_signed_up', new SignedUpController(new SignedUpView, $userRepository));
 
-      self::$router->addController('incidente_new', new UserNewController(new NewUserView, $userRepository));
-      self::$router->addController('incidente_added', new UserAddedController(new UserAddedView, $userRepository));
+      self::$router->addController('incidente_new', new NewIncidenteController(new NewIncidenteView($incidentsRepository)));
+      self::$router->addController('incidente_added', new IncidenteAddedController(new IncidenteAddedView, $incidentsRepository));
       self::$router->addController('incidente_form_update', new UserFormController(new EditUserView, $userRepository));
       self::$router->addController('incidente_updated', new UserUpdatedController(new UserUpdatedView, $userRepository));
       self::$router->addController('incidente_destroy', new UserDestroyedController(new UserDestroyedView, $userRepository));

@@ -1,0 +1,56 @@
+{% extends 'plantilla_base.html' %}
+
+{% block body %}
+<div id="div-top" align="center">
+  <h1>Carga de Incidente </h1>
+  <form action="./?action=incidente_added" method='post'>
+    <div class="container">
+      <div class="row">
+        <div align="left">
+          <div class="well well-sm">
+            <div class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-user bigicon"></i></span>
+                  <div class="col-md-8">
+                    Descripci&oacute;n:
+                    <input id="descripcion" name="descripcion" type="textarea" placeholder="descripcion"
+                    value="{% block descripcion_value %} {% endblock %}" class="form-control" required >
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <fieldset>
+                <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-envelope-o bigicon"></i></span>
+                  <div class="col-md-8">
+                    Tipo de Incidente:
+                      <select name="tipo_incidente" required>
+                        {% for item in tipos_incidentes %}
+                          <option value={{ item.idTipoIncidente }}>{{ item.nombe }}</option>
+                        {% endfor %}
+                      </select>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              {% block form %} {% endblock %}
+              <div class="form-group">
+                <div class="col-md-12 text-center">
+                <input type="submit" class="btn btn-primary" id= "confirm_button" name="confirm_button" value="Confirmar">
+                <input type="button" class="btn btn-danger" id= "cancel_button" name="cancel_button" onclick="return cancelar('index')"; value="Cancelar"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
