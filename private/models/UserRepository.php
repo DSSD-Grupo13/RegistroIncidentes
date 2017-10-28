@@ -36,9 +36,9 @@ class UserRepository extends PDORepository
     return $this->queryToUserArray($this->queryList("SELECT * FROM usuario"));
   }
 
-  public function delete($useridUsuario)
+  public function delete($idUsuario)
   {
-    return $this->stmtDelete->execute([$useridUsuario]);
+    return $this->stmtDelete->execute([$idUsuario]);
   }
 
   public function create($nombreUsuario, $mail, $contrasena, $nombre, $apellido)
@@ -46,14 +46,14 @@ class UserRepository extends PDORepository
     return $this->stmtCreate->execute([$nombreUsuario, $mail, $contrasena, $nombre, $apellido]);
   }
 
-  public function update($mail, $contrasena, $nombre, $apellido, $useridUsuario)
+  public function update($mail, $contrasena, $nombre, $apellido, $idUsuario)
   {
-    return $this->stmtUpdate->execute([$mail, $contrasena, $nombre, $apellido, $useridUsuario]);
+    return $this->stmtUpdate->execute([$mail, $contrasena, $nombre, $apellido, $idUsuario]);
   }
 
-  public function getUser($useridUsuario)
+  public function getUser($idUsuario)
   {
-    return $this->queryToUserArray($this->queryList("SELECT * FROM usuario where idUsuario = ?", [$useridUsuario]))[0];
+    return $this->queryToUserArray($this->queryList("SELECT * FROM usuario where idUsuario = ?", [$idUsuario]))[0];
   }
 
   private function queryUser($nombreUsuario, $contrasena)
