@@ -1,10 +1,10 @@
 <?php
 abstract class PDORepository
 {
-  const USERNAME = "grupo1";
-  const PASSWORD = "YTIzNDE5ODJkOWQ4";
+  const USERNAME = "grupo13";
+  const PASSWORD = "bpm";
   const HOST = "localhost";
-  const DB = "grupo1";
+  const DB = "grupo13";
 
   protected function getConnection()
   {

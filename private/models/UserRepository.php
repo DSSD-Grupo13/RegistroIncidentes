@@ -10,15 +10,13 @@ class UserRepository extends PDORepository
     $answer = [];
     foreach ($query as &$element) {
       $answer[] = new User(
-        $element['id'],
-        $element['username'],
-        $element['password'],
-        $element['email'],
-        $element['active'],
-        $element['updated_at'],
-        $element['created_at'],
-        $element['first_name'],
-        $element['last_name']
+        $element['idUsuario'],
+        $element['nombreUsuario'],
+        $element['contrasena'],
+        $element['mail'],
+        $element['dni'],
+        $element['nombre'],
+        $element['apellido']
       );
     }
     return $answer;
@@ -26,59 +24,56 @@ class UserRepository extends PDORepository
 
   public function __construct()
   {
-    $this->stmtToggleActive = $this->newPreparedStmt("UPDATE users SET active = not active WHERE id = ?");
-    $this->stmtDelete = $this->newPreparedStmt("DELETE FROM users WHERE id = ?");
-    $this->stmtCreate = $this->newPreparedStmt("INSERT INTO users (username, email, password, first_name, last_name,
-                                                active, updated_at, created_at)
-                                                VALUES (?, ?, ?, ?, ?, 1, NOW(), NOW())");
-    $this->stmtUpdate = $this->newPreparedStmt("UPDATE users SET email = ?, password = ?, first_name = ?, last_name = ?,
-                                                updated_at = NOW()
-                                                WHERE Id = ?");
+    $this->stmtDelete = $this->newPreparedStmt("DELETE FROM usuario WHERE idUsuario = ?");
+    $this->stmtCreate = $this->newPreparedStmt("INSERT INTO usuario (nombreUsuario, mail, contrasena, nombre, apellido,
+                                                dni, localidad)  VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $this->stmtUpdate = $this->newPreparedStmt("UPDATE usuario SET mail = ?, contrasena = ?, nombre = ?, apellido = ?
+                                                WHERE idUsuario = ?");
   }
 
   public function getAll()
   {
-    return $this->queryToUserArray($this->queryList("SELECT * FROM users"));
+    return $this->queryToUserArray($this->queryList("SELECT * FROM usuario"));
   }
 
-  public function delete($userId)
+  public function delete($useridUsuario)
   {
-    return $this->stmtDelete->execute([$userId]);
+    return $this->stmtDelete->execute([$useridUsuario]);
   }
 
-  public function create($username, $email, $password, $first_name, $last_name)
+  public function create($nombreUsuario, $mail, $contrasena, $nombre, $apellido)
   {
-    return $this->stmtCreate->execute([$username, $email, $password, $first_name, $last_name]);
+    return $this->stmtCreate->execute([$nombreUsuario, $mail, $contrasena, $nombre, $apellido]);
   }
 
-  public function update($email, $password, $first_name, $last_name, $userId)
+  public function update($mail, $contrasena, $nombre, $apellido, $useridUsuario)
   {
-    return $this->stmtUpdate->execute([$email, $password, $first_name, $last_name, $userId]);
+    return $this->stmtUpdate->execute([$mail, $contrasena, $nombre, $apellido, $useridUsuario]);
   }
 
-  public function getUser($userId)
+  public function getUser($useridUsuario)
   {
-    return $this->queryToUserArray($this->queryList("SELECT * FROM users where id = ?", [$userId]))[0];
+    return $this->queryToUserArray($this->queryList("SELECT * FROM usuario where idUsuario = ?", [$useridUsuario]))[0];
   }
 
-  private function queryUser($username, $password)
+  private function queryUser($nombreUsuario, $contrasena)
   {
-    return $this->queryToUserArray($this->queryList("SELECT * FROM users where username = ? AND password = ?", [$username, $password]));
+    return $this->queryToUserArray($this->queryList("SELECT * FROM usuario where nombreUsuario = ? AND contrasena = ?", [$nombreUsuario, $contrasena]));
   }
 
-  public function containsUser($username, $password)
+  public function containsUser($nombreUsuario, $contrasena)
   {
-    return count($this->queryUser($username, $password)) > 0;
+    return count($this->queryUser($nombreUsuario, $contrasena)) > 0;
   }
 
-  public function findUser($username, $password)
+  public function findUser($nombreUsuario, $contrasena)
   {
-    return $this->queryUser($username, $password)[0];
+    return $this->queryUser($nombreUsuario, $contrasena)[0];
   }
 
-  public function userNameExists($username)
+  public function nombreUsuarioExists($nombreUsuario)
   {
-    return count($this->queryList("SELECT * FROM users where username = ?", [$username]));
+    return count($this->queryList("SELECT * FROM usuario where nombreUsuario = ?", [$nombreUsuario]));
   }
 }
 
