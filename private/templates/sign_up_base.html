@@ -33,6 +33,17 @@
               <br>
               <fieldset>
                 <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-user bigicon"></i></span>
+                  <div class="col-md-8">
+                    DNI:
+                    <input id="dni" name="dni" type="text" placeholder="DNI"
+                    value="{% block dni_value %} {% endblock %}" class="form-control" required>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <fieldset>
+                <div class="form-group">
                   <span class="col-md-1 col-md-offset-2 text-left"><i class="fa fa-envelope-o bigicon"></i></span>
                   <div class="col-md-8">
                     E-mail:
@@ -69,7 +80,6 @@
               <div class="form-group">
                 <div class="col-md-12 text-center">
                 <input type="submit" class="btn btn-primary" id= "confirm_button" name="confirm_button" value="Confirmar">
-
                 <input type="button" class="btn btn-danger" id= "cancel_button" name="cancel_button" onclick="return cancelar('users_index')"; value="Cancelar"></button>
                 </div>
               </div>

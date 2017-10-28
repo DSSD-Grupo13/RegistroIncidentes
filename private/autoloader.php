@@ -6,6 +6,8 @@ require_once "./private/controllers/Router.php";
 require_once "./private/controllers/IndexController.php";
 require_once "./private/controllers/UserController.php";
 require_once "./private/controllers/LoginController.php";
+require_once "./private/controllers/SignUpController.php";
+require_once "./private/controllers/SignedUpController.php";
 require_once "./private/Session.php";
 
 require_once "./private/models/PDORepository.php";
@@ -22,3 +24,6 @@ require_once "./private/views/UserAddedView.php";
 require_once "./private/views/UserFormView.php";
 require_once "./private/views/UserUpdatedView.php";
 require_once "./private/views/UserDestroyedView.php";
+
+require_once "./private/views/SignUpView.php";
+require_once "./private/views/SignedUpView.php";

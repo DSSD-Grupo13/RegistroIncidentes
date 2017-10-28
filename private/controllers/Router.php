@@ -35,6 +35,8 @@ class Router
       self::$router->addController('login', new LoginController($loginView));
       self::$router->addController('do-login', new DoLoginController(new $indexView, $loginView, $userRepository));
       self::$router->addController('do-logout', new DoLogoutController($indexController));
+      self::$router->addController('sign-up', new SignUpController(new SignUpView));
+      self::$router->addController('user_signed_up', new SignedUpController(new SignedUpView, $userRepository));
 
       self::$router->addController('incidente_new', new UserNewController(new NewUserView, $userRepository));
       self::$router->addController('incidente_added', new UserAddedController(new UserAddedView, $userRepository));

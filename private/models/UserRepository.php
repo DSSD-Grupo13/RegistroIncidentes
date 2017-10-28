@@ -41,9 +41,9 @@ class UserRepository extends PDORepository
     return $this->stmtDelete->execute([$idUsuario]);
   }
 
-  public function create($nombreUsuario, $mail, $contrasena, $nombre, $apellido)
+  public function create($nombreUsuario, $mail, $contrasena, $nombre, $apellido, $dni)
   {
-    return $this->stmtCreate->execute([$nombreUsuario, $mail, $contrasena, $nombre, $apellido]);
+    return $this->stmtCreate->execute([$nombreUsuario, $mail, $contrasena, $nombre, $apellido, $dni, 'lala']);
   }
 
   public function update($mail, $contrasena, $nombre, $apellido, $idUsuario)
@@ -71,7 +71,7 @@ class UserRepository extends PDORepository
     return $this->queryUser($nombreUsuario, $contrasena)[0];
   }
 
-  public function nombreUsuarioExists($nombreUsuario)
+  public function userNameExists($nombreUsuario)
   {
     return count($this->queryList("SELECT * FROM usuario where nombreUsuario = ?", [$nombreUsuario]));
   }

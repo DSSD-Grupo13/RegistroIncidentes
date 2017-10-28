@@ -33,7 +33,8 @@
           <p class="navbar-text"> <span class="glyphicon glyphicon-user"></span> Bienvenido, {{ session.UserName }} !</p>
           <li><a href=./?action=do-logout><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
         {% else %}
-          <li><a href=./?action=login><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+        <li><a href=./?action=sign-up><span class="glyphicon glyphicon-pencil"></span> Registrarse </a></li>
+        <li><a href=./?action=login><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
         {% endif %}
       </ul>
     </div>

@@ -1,11 +1,11 @@
-{% extends 'user_form_base.html' %}
+{% extends 'sign_up_base.html' %}
 
 {% block header %}
 Ingreso de nuevo Usuario
 {% endblock %}
 
 {% block action %}
-./?action=user_added
+./?action=user_signed_up
 {% endblock %}
 
 {% block first_name_value %}
@@ -21,4 +21,7 @@ Ingreso de nuevo Usuario
 {% endblock %}
 
 {% block password_value %}
+{% endblock %}
+
+{% block dni_value %}
 {% endblock %}
