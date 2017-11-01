@@ -19,31 +19,29 @@
         </tr>
       </thead>
 
-      {% for item in pacients %}
+      {% for item in incidents %}
         <tr>
-          <td>{{ item.type }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.description }}</td>
-          <tr>
-              {% for each in item.objects %}
-                <td>{{ each.name }}</td>
-                <td>{{ each.amount }}</td>
-                <td>{{ each.description }}</td>
-              {% endfor %}
-          </tr>
-          <td>
+          <td>{{ item.tipoincidente }}</td>
+          <td>{{ item.fechaInicio }}</td>
+          <td>{{ item.descripcion }}</td>
           <td>
             <form action="./?action=incidente_form_update" method="post">
               <input type="submit" class="btn btn-primary" name="id" value="Modificar">
-              <input type="hidden" name="id" id="id" value= "{{ item.id }}">
+              <input type="hidden" name="id" id="id" value="{{ item.id }}">
             </form>
           </td>
-        <td>
-          <form action="./?action=incidente_destroy" method="post">
-            <input type="submit" class="btn btn-primary"  onclick='return confirm("¿Estás seguro?")' value="Eliminar" id="boton_borrar"/>
-            <input type="hidden" name="id" id="id" value= "{{ item.id }}">
-          </form>
+          <td>
+            <form action="./?action=incidente_destroy" method="post">
+              <input type="submit" class="btn btn-primary" onclick='return confirm("¿Estás seguro?")' value="Eliminar" id="boton_borrar" />
+              <input type="hidden" name="id" id="id" value="{{ item.id }}"> </form>
           </td>
+          <tr>
+              {% for each in item.objetos %}
+                <td>{{ each.nombre }}</td>
+                <td>{{ each.cantidad }}</td>
+                <td>{{ each.description }}</td>
+              {% endfor %}
+          </tr>
         </tr>
         {% endfor %}
       </tbody>

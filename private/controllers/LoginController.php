@@ -19,12 +19,14 @@ class DoLoginController extends Controller
   private $indexView;
   private $loginView;
   private $userRepository;
+  private $incidentsRepository;
 
-  public function __construct($indexView, $loginView, $userRepository)
+  public function __construct($indexView, $loginView, $userRepository, $incidentsRepository)
   {
     $this->indexView = $indexView;
     $this->loginView = $loginView;
     $this->userRepository = $userRepository;
+    $this->incidentsRepository = $incidentsRepository;
   }
 
   protected function showInvalidArgsView()
@@ -50,7 +52,7 @@ class DoLoginController extends Controller
       $user = $this->userRepository->findUser($args['username'], $args['password']);
       $_SESSION['userId'] = $user->getId();
       $_SESSION['userName'] = $user->getFull_Name();
-      $this->indexView->show();
+      $this->indexView->show($this->incidentsRepository->getIncidentesUsuario($user->getId()));
     }
     else
       $this->showInvalidArgsView();

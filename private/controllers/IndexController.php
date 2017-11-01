@@ -12,6 +12,6 @@ class IndexController extends Controller
 
   protected function doShowView($args)
   {
-    $this->indexView->show();
+    $this->indexView->show($this->incidentsRepository->getIncidentesUsuario($this->getSession()->getUserId()));
   }
 }
