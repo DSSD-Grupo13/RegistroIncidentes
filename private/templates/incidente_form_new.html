@@ -27,7 +27,7 @@
                     Tipo de Incidente:
                       <select name="tipo_incidente" required>
                         {% for item in tipos_incidentes %}
-                          <option value={{ item.idTipoIncidente }}>{{ item.nombe }}</option>
+                          <option value={{ item.idTipoIncidente }}>{{ item.nombre }}</option>
                         {% endfor %}
                       </select>
                   </div>
