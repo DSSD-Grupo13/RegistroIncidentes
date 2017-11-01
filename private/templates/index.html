@@ -13,38 +13,30 @@
           <th>Tipo Incidente </th>
           <th>Fecha de Incidente</th>
           <th> Descripci&oacute;n </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
+          <th> <div align="center"> Objetos informados </div> </th>
         </tr>
       </thead>
-
       {% for item in incidents %}
         <tr>
-          <td>{{ item.tipoincidente }}</td>
-          <td>{{ item.fechaInicio }}</td>
-          <td>{{ item.descripcion }}</td>
+          <td> {{ item.tipoincidente }} </td>
+          <td> {{ item.fechaInicio }} </td>
+          <td> {{ item.descripcion }} </td>
           <td>
-            <form action="./?action=incidente_form_update" method="post">
-              <input type="submit" class="btn btn-primary" name="id" value="Modificar">
-              <input type="hidden" name="id" id="id" value="{{ item.id }}">
-            </form>
+              <table class="table table-condensed">
+                  <thead>
+                      <tr>
+                        <th> Nombre</th>
+                        <th> Cantidad </th>
+                        <th> Descripci&oacute;n </th>
+                      </tr>
+                    </thead>
+                  <td> {{ each.nombre }}</td>
+                  <td> {{ each.cantidad }}</td>
+                  <td> {{ each.description }}</td>
+              </table>
           </td>
-          <td>
-            <form action="./?action=incidente_destroy" method="post">
-              <input type="submit" class="btn btn-primary" onclick='return confirm("¿Estás seguro?")' value="Eliminar" id="boton_borrar" />
-              <input type="hidden" name="id" id="id" value="{{ item.id }}"> </form>
-          </td>
-          <tr>
-              {% for each in item.objetos %}
-                <td>{{ each.nombre }}</td>
-                <td>{{ each.cantidad }}</td>
-                <td>{{ each.description }}</td>
-              {% endfor %}
-          </tr>
         </tr>
         {% endfor %}
-      </tbody>
     </table>
   </div>
 </div>
