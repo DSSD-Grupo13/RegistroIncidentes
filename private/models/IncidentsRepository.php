@@ -24,4 +24,10 @@ class IncidentsRepository extends PDORepository
   {
     return $this->queryList("SELECT * FROM tipoincidente");
   }
+
+  public function getIncidentesUsuario($idUsuario)
+  {
+    return $this->queryList("SELECT I.*, TI.nombre AS tipoincidente FROM incidente I INNER JOIN tipoincidente TI ON (I.idTipoIncidente = TI.idTipoIncidente)
+                                           WHERE I.idUsuario = ?", [$idUsuario]);
+  }
 }
