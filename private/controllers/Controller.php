@@ -23,6 +23,11 @@ abstract class Controller
     return new ErrorMessageView($errMsg);
   }
 
+  protected function getSession()
+  {
+    return new Session();
+  }
+
   public function showView($args)
   {
     if ($this->checkArgs($args))

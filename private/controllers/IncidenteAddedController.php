@@ -20,11 +20,6 @@ class IncidenteAddedController extends Controller
     return $this->view;
   }
 
-  protected function getSession()
-  {
-    return new Session();
-  }
-
   protected function checkArgs($args)
   {
     if (!$this->getSession()->getIsLoggedIn())
