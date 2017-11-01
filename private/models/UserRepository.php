@@ -26,7 +26,7 @@ class UserRepository extends PDORepository
   {
     $this->stmtDelete = $this->newPreparedStmt("DELETE FROM usuario WHERE idUsuario = ?");
     $this->stmtCreate = $this->newPreparedStmt("INSERT INTO usuario (nombreUsuario, mail, contrasena, nombre, apellido,
-                                                dni, localidad)  VALUES (?, ?, ?, ?, ?, ?, ?)");
+                                                dni)  VALUES (?, ?, ?, ?, ?, ?)");
     $this->stmtUpdate = $this->newPreparedStmt("UPDATE usuario SET mail = ?, contrasena = ?, nombre = ?, apellido = ?
                                                 WHERE idUsuario = ?");
   }
@@ -43,7 +43,7 @@ class UserRepository extends PDORepository
 
   public function create($nombreUsuario, $mail, $contrasena, $nombre, $apellido, $dni)
   {
-    return $this->stmtCreate->execute([$nombreUsuario, $mail, $contrasena, $nombre, $apellido, $dni, 'lala']);
+    return $this->stmtCreate->execute([$nombreUsuario, $mail, $contrasena, $nombre, $apellido, $dni]);
   }
 
   public function update($mail, $contrasena, $nombre, $apellido, $idUsuario)
