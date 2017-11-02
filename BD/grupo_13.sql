@@ -22,6 +22,14 @@ CREATE TABLE `incidente` (
   `idEstado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `objetoIncidente` (
+  `idObjeto`int(10) NOT NULL,
+  `idIncidente` int(10) NOT NULL,
+  `nombre` text NOT NULL,
+  `descripcion` text NOT NULL,
+  `cantidad` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `tipoincidente` (
   `nombre` varchar(15) NOT NULL,
   `idTipoIncidente` int(2) NOT NULL
