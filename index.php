@@ -4,8 +4,6 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 
 require_once "./private/autoloader.php";
-require_once "./vendor/autoload.php";
-
 session_start();
 
 if (isset($_GET['action']))

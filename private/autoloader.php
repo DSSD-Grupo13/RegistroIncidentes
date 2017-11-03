@@ -1,5 +1,6 @@
 <?php
 require_once "./private/vendor/Twig/lib/Twig/Autoloader.php";
+require_once "./vendor/autoload.php";
 
 require_once "./private/controllers/Controller.php";
 require_once "./private/controllers/Router.php";
@@ -11,6 +12,7 @@ require_once "./private/controllers/SignedUpController.php";
 require_once "./private/controllers/NewIncidenteController.php";
 require_once "./private/controllers/IncidenteAddedController.php";
 require_once "./private/Session.php";
+require_once "./private/api-bonita/Bonita.php";
 
 require_once "./private/models/PDORepository.php";
 require_once "./private/models/UserRepository.php";
