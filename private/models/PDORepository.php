@@ -1,8 +1,8 @@
 <?php
 abstract class PDORepository
 {
-  const USERNAME = "root";
-  const PASSWORD = "";
+  const USERNAME = "grupo13";
+  const PASSWORD = "bpm";
   const HOST = "localhost";
   const DB = "grupo13";
 
