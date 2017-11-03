@@ -3,6 +3,18 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXISTS grupo13;
+
+CREATE DATABASE grupo13;
+
+DROP USER IF EXISTS 'grupo13'@'localhost';
+
+CREATE USER 'grupo13'@'localhost' IDENTIFIED BY 'bpm';
+
+GRANT ALL ON *.* TO 'grupo13'@'localhost';
+
+USE grupo13;
+
 CREATE TABLE `estado` (
   `idEstado` int(2) NOT NULL,
   `nombre` varchar(15) NOT NULL
