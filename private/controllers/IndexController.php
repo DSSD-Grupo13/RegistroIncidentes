@@ -14,6 +14,7 @@ class IndexController extends Controller
   {
     $this->indexView->show(
       $this->incidentsRepository->getIncidentesUsuario($this->getSession()->getUserId()),
-      $this->incidentsRepository->getTiposIncidentes());
+      $this->incidentsRepository->getTiposIncidentes(),
+      $this->incidentsRepository->getEstadosIncidentes());
   }
 }

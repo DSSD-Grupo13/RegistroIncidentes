@@ -23,6 +23,12 @@ class IncidentsRepository extends Repository
     return json_decode($response->getBody()->getContents());
   }
 
+  public function getEstadosIncidentes()
+  {
+    $response = $this->get('/estados-incidente');
+    return json_decode($response->getBody()->getContents());
+  }
+
   public function getIncidentesUsuario($idUsuario)
   {
     $response = $this->get("/incidentes/$idUsuario");
