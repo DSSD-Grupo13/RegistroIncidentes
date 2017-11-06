@@ -12,12 +12,11 @@ require_once './private/controllers/SignedUpController.php';
 require_once './private/controllers/NewIncidenteController.php';
 require_once './private/controllers/IncidenteAddedController.php';
 require_once './private/Session.php';
-require_once './APIClient.php';
+require_once './private/APIClient.php';
 
-require_once './private/models/PDORepository.php';
+require_once './private/models/Repository.php';
 require_once './private/models/UserRepository.php';
 require_once './private/models/IncidentsRepository.php';
-require_once './private/models/User.php';
 
 require_once './private/views/TwigView.php';
 require_once './private/views/IndexView.php';

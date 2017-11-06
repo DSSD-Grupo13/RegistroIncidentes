@@ -18,7 +18,7 @@ class APIClient {
     if (empty($api_base_uri))
       $api_base_uri = self::$API_BASE_URI;
 
-    $client = new \GuzzleHttp\Client(['base_uri' => $api_base_uri]);
+    $this->client = new \GuzzleHttp\Client(['base_uri' => $api_base_uri]);
   }
 
   public function get($endpoint)
