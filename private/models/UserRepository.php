@@ -56,7 +56,7 @@ class UserRepository extends Repository
     foreach ($users as &$element)
     {
       if ($element->{'nombreUsuario'} == $nombreUsuario)
-        return $true;
+        return true;
     }
 
     return false;
