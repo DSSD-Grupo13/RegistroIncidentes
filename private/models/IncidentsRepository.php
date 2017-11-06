@@ -11,11 +11,10 @@ class IncidentsRepository extends Repository
 
     $response = $this->post('/incidentes', $args);
     $json = json_decode($response->getBody()->getContents());
-    print_r($json);
     if ($response->getStatusCode() != 200)
       return false;
     else
-      return $json->{'idIncidente'};
+      return $json->{'id_incidente'};
   }
 
   public function getTiposIncidentes()

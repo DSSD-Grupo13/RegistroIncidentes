@@ -48,8 +48,10 @@ class IncidenteAddedController extends Controller
   protected function doShowView($args)
   {
     if ($this->sendRequest($args))
-    return $this->getView();
+      $view = $this->getView();
   else
-    return $this->getErrorView('No se pudo registrar el incidente, intente nuevamente');
+      $view = $this->getErrorView('No se pudo registrar el incidente, intente nuevamente');
+
+    $view->show();
   }
 }
