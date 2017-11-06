@@ -23,7 +23,8 @@ class UserRepository extends Repository
       'dni' => $dni
     ];
 
-    $this->post('/usuarios', $args);
+    $response = $this->post('/usuarios', $args);
+    return $response->getStatusCode() == 200;
   }
 
   public function getUser($idUsuario)
@@ -42,7 +43,7 @@ class UserRepository extends Repository
     $users = $this->getAll();
     foreach ($users as &$element)
     {
-      if (($element->getNombreUsuario() == $nombreUsuario) && ($element->getContrasena() == $contrasena))
+      if (($element->{'nombreUsuario'} == $nombreUsuario) && ($element->{'contrasena'} == $contrasena))
         return $element;
     }
 
@@ -54,7 +55,7 @@ class UserRepository extends Repository
     $users = $this->getAll();
     foreach ($users as &$element)
     {
-      if ($element->getNombreUsuario() == $nombreUsuario)
+      if ($element->{'nombreUsuario'} == $nombreUsuario)
         return $true;
     }
 
