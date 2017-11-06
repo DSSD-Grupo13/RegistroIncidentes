@@ -28,4 +28,10 @@ class IncidentsRepository extends Repository
     $response = $this->get("/incidentes/$idUsuario");
     return json_decode($response->getBody()->getContents());
   }
+
+  public function getTipoIncidente($idTipoIncidente)
+  {
+    $response = $this->get("/tipos-incidente/$idTipoIncidente");
+    return json_decode($response->getBody()->getContents());
+  }
 }

@@ -9,8 +9,12 @@ class IndexView extends TwigView
       return "empty_index.html";
   }
 
-  public function show($incidents)
+  public function show($incidents, $incidentTypes)
   {
-    $this->render(['incidents' => $incidents]);
+    $this->render([
+        'incidents' => $incidents,
+        'incidentTypes' =>$incidentTypes
+      ]
+    );
   }
 }
