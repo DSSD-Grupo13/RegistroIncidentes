@@ -40,19 +40,16 @@ class IncidenteAddedController extends Controller
     return true;
   }
 
-  private function canCreate($args)
+  private function sendRequest($args)
   {
     return $this->getRepository()->create($this->getSession()->getUserId(), $args['descripcion'], $args['tipo_incidente']);
   }
 
-  private function doCreate($args)
-  {
-    $id = $this->canCreate($args);
-    return $this->getView();
-  }
-
   protected function doShowView($args)
   {
-     $this->doCreate($args)->show();
+    if ($this->sendRequest($args))
+    return $this->getView();
+  else
+    return $this->getErrorView('No se pudo registrar el incidente, intente nuevamente');
   }
 }
