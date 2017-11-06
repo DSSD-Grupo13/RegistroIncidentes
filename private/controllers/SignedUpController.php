@@ -27,9 +27,6 @@ class SignedUpController extends Controller
 
   private function doCreate($args)
   {
-    if ($this->getRepository()->userNameExists($args['username']))
-      return $this->getErrorView('El nombre de usuario ya existe');
-
     if ($this->canCreate($args))
       return $this->getView();
 
