@@ -33,7 +33,7 @@ class Router
 
       self::$router->addController('index', $indexController);
       self::$router->addController('login', new LoginController($loginView));
-      self::$router->addController('do-login', new DoLoginController(new $indexView, $loginView, $userRepository, $incidentsRepository));
+      self::$router->addController('do-login', new DoLoginController($indexController, $loginView, $userRepository));
       self::$router->addController('do-logout', new DoLogoutController($indexController));
       self::$router->addController('sign-up', new SignUpController(new SignUpView));
       self::$router->addController('user_signed_up', new SignedUpController(new SignedUpView, $userRepository));
