@@ -32,9 +32,13 @@
                         <th> Descripci&oacute;n </th>
                       </tr>
                     </thead>
-                  <td> {{ each.nombre }}</td>
-                  <td> {{ each.cantidad }}</td>
-                  <td> {{ each.description }}</td>
+                  {% for each in item.objetos %}
+                  <tr>
+                    <td> {{ each.nombre }}</td>
+                    <td> {{ each.cantidad }}</td>
+                    <td> {{ each.descripcion }}</td>
+                  </tr>
+                {% endfor %}
               </table>
           </td>
         </tr>
