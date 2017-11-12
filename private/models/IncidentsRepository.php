@@ -1,12 +1,13 @@
 <?php
 class IncidentsRepository extends Repository
 {
-  public function create($idUsuario, $descripcion, $tipo_incidente)
+  public function create($idUsuario, $descripcion, $tipo_incidente, $objetos)
   {
     $args = [
       'idUsuario'=> $idUsuario,
       'descripcion'=> $descripcion,
-      'idTipoIncidente'=> $tipo_incidente
+      'idTipoIncidente'=> $tipo_incidente,
+      'objetos' => $objetos
     ];
 
     $response = $this->post('/incidentes', $args);
