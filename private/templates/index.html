@@ -10,18 +10,20 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th>Tipo Incidente </th>
-          <th>Estado Incidente</th>
-          <th>Fecha de Incidente</th>
+          <th> C&oacute;digo </th>
+          <th> Tipo </th>
+          <th> Estado</th>
+          <th> Fecha </th>
           <th> Descripci&oacute;n </th>
           <th> <div align="center"> Objetos informados </div> </th>
         </tr>
       </thead>
       {% for item in incidents %}
         <tr>
-          <td> {{ incidentTypes[item.idTipoIncidente - 1].nombre }} </td>
-          <td> {{ incidentStates[item.estado - 1].nombre }} </td>
-          <td> {{ item.fechaInicio }} </td>
+          <td> {{ item.id }} </td>
+          <td> {{ item.tipo.nombre }} </td>
+          <td> {{ item.estado.nombre }} </td>
+          <td> {{ item.fecha }} </td>
           <td> {{ item.descripcion }} </td>
           <td>
               <table class="table table-condensed">
