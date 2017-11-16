@@ -3,7 +3,7 @@
 {% block body %}
 <div id="div-top" align="center">
   <h1>Carga de Incidente </h1>
-  <form action="./?action=incidente_added" method='POST'>
+  <form action="./?action=incidente_added" method="POST">
     <div class="container">
       <div class="row">
         <div align="left">
@@ -22,9 +22,9 @@
                 <div class="col-md-8">
                   Tipo de Incidente:
                   <div>
-                      <select name="tipo_incidente" required>
+                      <select id="tipo_incidente" name="tipo_incidente" required>
                         {% for item in tipos_incidentes %}
-                          <option value={{ item.idTipoIncidente }}>{{ item.nombre }}</option>
+                          <option value={{ item.id }}>{{ item.nombre }}</option>
                         {% endfor %}
                     </select>
                   </div>
