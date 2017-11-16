@@ -1,13 +1,20 @@
 <?php
 class IncidenteAddedView extends TwigView
 {
-  protected function getTemplateFile()
+  private $message;
+
+  public function __construct($message)
   {
-    return 'incidente_added.html';
+    $this->message = $message;
   }
 
   public function show()
   {
-    $this->render();
+    $this->render(['msg' => $this->message]);
+  }
+
+  protected function getTemplateFile()
+  {
+    return 'incidente_added.html';
   }
 }

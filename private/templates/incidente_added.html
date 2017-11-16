@@ -1,7 +1,7 @@
-{% extends 'plantilla_base.html' %}
+{% extends 'generic_success_view.html' %}
 
-{% block body %}
-<div class="alert alert-success">
-	Se creó el incidente correctamente. <a href="./?action=index"> Volver al listado de incidentes. </a>
-</div>
+{% block success_msg %}
+  <div> {{ msg }} </div>
+  <br>
+  <a href="./?action=index"> Volver al listado de incidentes. </a>
 {% endblock %}

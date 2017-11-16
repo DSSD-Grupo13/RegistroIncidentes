@@ -1,12 +1,11 @@
 <?php
 class IncidenteAddedController extends Controller
 {
-  private $view;
   private $repository;
+  private $response;
 
-  public function __construct($view, $repository)
+  public function __construct($repository)
   {
-    $this->view = $view;
     $this->repository = $repository;
   }
 
@@ -15,9 +14,9 @@ class IncidenteAddedController extends Controller
     return $this->repository;
   }
 
-  protected function getView()
+  protected function getView($message)
   {
-    return $this->view;
+    return (new IncidenteAddedView($message));
   }
 
   protected function checkArgs($args)
@@ -51,6 +50,7 @@ class IncidenteAddedController extends Controller
 
   private function sendRequest($args)
   {
+    unset($this->response);
     $objetos = [];
     for ($i = 0; $i < count($args['nombre_objeto']); $i++)
     {
@@ -73,14 +73,15 @@ class IncidenteAddedController extends Controller
         'descripcion' => $descripcion);
     }
 
-    return $this->getRepository()->create($this->getSession()->getUserId(), $args['descripcion'], $args['tipo_incidente'], $objetos);
+    $this->response = $this->getRepository()->create($this->getSession()->getUserId(), $args['descripcion'], $args['tipo_incidente'], $objetos);
+    return (($this->response) != false);
   }
 
   protected function doShowView($args)
   {
     if ($this->sendRequest($args))
-      $view = $this->getView();
-  else
+      $view = $this->getView($this->response->{'message'});
+    else
       $view = $this->getErrorView('No se pudo registrar el incidente, intente nuevamente');
 
     $view->show();

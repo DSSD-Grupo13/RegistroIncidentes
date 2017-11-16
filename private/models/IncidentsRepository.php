@@ -15,7 +15,7 @@ class IncidentsRepository extends Repository
     if ($response->getStatusCode() != 200)
       return false;
     else
-      return $json->{'id_incidente'};
+      return $json;
   }
 
   public function getTiposIncidentes()

@@ -39,7 +39,7 @@ class Router
       self::$router->addController('user_signed_up', new SignedUpController(new SignedUpView, $userRepository));
 
       self::$router->addController('incidente_new', new NewIncidenteController(new NewIncidenteView($incidentsRepository)));
-      self::$router->addController('incidente_added', new IncidenteAddedController(new IncidenteAddedView, $incidentsRepository));
+      self::$router->addController('incidente_added', new IncidenteAddedController($incidentsRepository));
       self::$router->addController('incidente_form_update', new UserFormController(new EditUserView, $userRepository));
       self::$router->addController('incidente_updated', new UserUpdatedController(new UserUpdatedView, $userRepository));
       self::$router->addController('incidente_destroy', new UserDestroyedController(new UserDestroyedView, $userRepository));
