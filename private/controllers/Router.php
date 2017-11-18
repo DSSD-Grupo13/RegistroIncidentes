@@ -38,7 +38,7 @@ class Router
       self::$router->addController('sign-up', new SignUpController(new SignUpView));
       self::$router->addController('user_signed_up', new SignedUpController(new SignedUpView, $userRepository));
 
-      self::$router->addController('incidente_new', new NewIncidenteController(new NewIncidenteView($incidentsRepository)));
+      self::$router->addController('incidente_new', new NewIncidenteController(new NewIncidenteView));
       self::$router->addController('incidente_added', new IncidenteAddedController($incidentsRepository));
       self::$router->addController('incidente_form_update', new UserFormController(new EditUserView, $userRepository));
       self::$router->addController('incidente_updated', new UserUpdatedController(new UserUpdatedView, $userRepository));

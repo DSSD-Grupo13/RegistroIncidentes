@@ -18,19 +18,6 @@
                 </div>
               </div>
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-left"></span>
-                <div class="col-md-8">
-                  Tipo de Incidente:
-                  <div>
-                      <select id="tipo_incidente" name="tipo_incidente" required>
-                        {% for item in tipos_incidentes %}
-                          <option value={{ item.id }}>{{ item.nombre }}</option>
-                        {% endfor %}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
                 <h2 class="text-center">Objetos a Indemnizar</h2>
                 {% for i in 1..3 %}
                   <span class="col-md-4">

@@ -27,9 +27,6 @@ class IncidenteAddedController extends Controller
     if (!isset($args['descripcion']))
       return false;
 
-    if (!isset($args['tipo_incidente']))
-      return false;
-
     if (!isset($args['nombre_objeto']))
       return false;
 
@@ -40,9 +37,6 @@ class IncidenteAddedController extends Controller
       return false;
 
     if (empty($args['descripcion']))
-      return false;
-
-    if (!is_numeric($args['tipo_incidente']))
       return false;
 
     return true;
@@ -73,7 +67,7 @@ class IncidenteAddedController extends Controller
         'descripcion' => $descripcion);
     }
 
-    $this->response = $this->getRepository()->create($this->getSession()->getUserId(), $args['descripcion'], $args['tipo_incidente'], $objetos);
+    $this->response = $this->getRepository()->create($this->getSession()->getUserId(), $args['descripcion'], $objetos);
     return (($this->response) != false);
   }
 

@@ -1,12 +1,11 @@
 <?php
 class IncidentsRepository extends Repository
 {
-  public function create($idUsuario, $descripcion, $tipo_incidente, $objetos)
+  public function create($idUsuario, $descripcion, $objetos)
   {
     $args = [
       'idUsuario'=> $idUsuario,
       'descripcion'=> $descripcion,
-      'idTipoIncidente'=> $tipo_incidente,
       'objetos' => $objetos
     ];
 
